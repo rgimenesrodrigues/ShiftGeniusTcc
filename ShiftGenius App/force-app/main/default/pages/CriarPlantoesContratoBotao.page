@@ -1,0 +1,26 @@
+<apex:page StandardController="Contrato__c" lightningStylesheets="true" extensions="CriarEventosContrato" doctype="html-5.0">
+  
+  <apex:slds />
+  <!-- Page Header -->
+  <apex:sectionHeader title="Gerar Plantões"  />
+
+  
+  <apex:form >
+  
+    <apex:pageBlock mode="detail" > 
+
+      <apex:pageBlockSection columns="2" showHeader="true" title="Informações" collapsible="true"> 
+        <apex:input id="dateStart"  value="{!dataInicio}" type="date"  label="Data de início" required="true" />
+        <apex:input id="dateEnd" value="{!dataFim}" type="date" label="Data de fim" required="true" /> 
+        <apex:input id="horaInicio" value="{!horaInicio}" label="Hora de início" required="true" />
+        <apex:input id="horaFim" value="{!horaFim}" label="Hora de fim"  required="true" />
+            
+      </apex:pageBlockSection>
+     
+      <apex:pageBlockButtons location="bottom">
+        <apex:commandButton value="Gerar plantões" action="{!criarEventos}" oncomplete="toastLaunch"/>
+            <apex:commandButton value="Fechar" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>

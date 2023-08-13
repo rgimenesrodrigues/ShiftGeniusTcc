@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ShiftMed Site POC</title>
+</head>
+<body>
+
+
+<img src="../Images/Logo.png" alt="Logo" height="200">
+
+    <div id="login-container">
+        <form id="login-form">
+
+        	<h1>Bem-vindo à ShiftMed</h1>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <input type="submit" value="Log In" id="login">
+        </form>
+    </div>
+
+    <div id="error-message" style="color: red; margin-top: 10px;"></div>
+
+    <!-- Add a button to redirect to another page -->
+    <button id="other-button" style="display: none;">Acessar ShiftGenius</button>
+
+    <!-- Load Auth0.js library using defer attribute -->
+    <script src="https://cdn.auth0.com/js/auth0/9.20.0/auth0.min.js" defer></script>
+    <script src="../Scripts/app.js" defer></script>
+
+
+</body>
+</html>

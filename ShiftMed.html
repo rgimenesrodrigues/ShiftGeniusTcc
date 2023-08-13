@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mock Customer Site</title>
+</head>
+<body>
+    <header>
+        <!-- Add your logo here -->
+        <img src="C:\Rodrigo\Projetos\ShiftGenius\Logo ShiftMed.png" alt="Logo" height="400">
+    </header>
+        <nav>
+	        <!-- Navigation menu with an initial hidden link to Salesforce page -->
+	        <ul>
+	            <!-- Placeholder for the Salesforce link, hidden by default -->
+	            <li id="salesforce-link" style="display: none;"><a href="https://your-salesforce-instance.salesforce.com/">Salesforce Page</a></li>
+	            <!-- Add other menu items as needed -->
+	        </ul>
+	    </nav>
+
+	    <form id="login-form">
+	        <label for="username">Username:</label>
+	        <input type="text" id="username" name="username" required>
+	        <br>
+	        <label for="password">Password:</label>
+	        <input type="password" id="password" name="password" required>
+	        <br>
+	        <input type="submit" value="Login" id="login"> <!-- Added the id="login" to the login button -->
+	    </form>
+
+
+    <script src="app.js"></script>
+</body>
+</html>

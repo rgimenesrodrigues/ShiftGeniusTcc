@@ -1,0 +1,146 @@
+<template>
+
+    
+    <lightning-card  variant="Narrow">  
+      
+      <div class="slds-p-around_medium lgc-bg">
+        <lightning-tile label={nomeUsuario} href="https://axyz4-dev-ed--c.develop.vf.force.com/apex/CadastroMedico?medicoId=003Dn00000CpwOjIAJ" type="media">
+            <lightning-avatar slot="media" src="https://www.lightningdesignsystem.com/assets/images/avatar1.jpg" fallback-icon-name="standard:person_account" alternative-text="Bruce Wayne"></lightning-avatar>
+            <ul class="slds-list_horizontal slds-has-dividers_right">
+                <template if:true={ehMedico}>
+                    <li class="slds-item">{especialidades}</li>
+                    <br/>
+                    <li class="slds-item">Coordenador: {coordenador}</li>
+                </template>
+                <li class="slds-item">{cidadeUsuario}</li>
+           </ul>
+        </lightning-tile>
+    </div>
+    
+      
+      <div class="slds-grid">
+        <div class="slds-m-around_small">
+          <div id="calendar" class="fullcalendarjs"></div>
+        </div>
+      </div>
+      <template if:true={selectedEvent}>
+        {selectedEvent.title}
+      </template>
+      <!-- Display the Selected Event Details -->
+      <template if:true={selectedEvent} >
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small"
+          aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+          <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Detalhes do Plantão</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <lightning-card  variant="Narrow"  title={selectedEvent.title} icon-name="standard:event">
+                  <template if:false={selectedEvent.plantaoLivre} >
+                    <template if:false={ehMedico}>
+                    <p class="slds-p-horizontal_small">
+                      Médico : {selectedEvent.nomeMedico}
+                    </p>
+                  </template>
+                  </template>
+                    <p class="slds-p-horizontal_small">
+                      Assunto : {selectedEvent.title}
+                    </p>
+                    <p class="slds-p-horizontal_small">
+                      Data de início : {selectedEvent.start}
+                      <!--
+                      <lightning-formatted-date-time value={selectedEvent.start} year="numeric"
+                        day="2-digit"
+                        month="long"
+                        hour="2-digit"
+                        minute="2-digit">
+                      </lightning-formatted-date-time>
+                       -->
+                       
+                    </p>
+                    <p class="slds-p-horizontal_small">
+                      Data de Fim : {selectedEvent.end}
+                      <!--
+                      <lightning-formatted-date-time value={selectedEvent.end} year="2-digit" month="short" day="2-digit" weekday="long">
+                      </lightning-formatted-date-time>
+                      -->
+                    </p>
+                    <template if:true={ehShiftmed}>
+                      <p class="slds-p-horizontal_small">
+                        Descrição : {selectedEvent.description}
+                      </p>
+                    </template>
+                    <p class="slds-p-horizontal_small">
+                      Hospital : {selectedEvent.hospital}
+                    </p>
+                    <template if:true={ehMedico}>
+                    <p class="slds-p-horizontal_small">
+                      Valor : 
+                      <lightning-formatted-number
+                      value={selectedEvent.valorPlantao}
+                      format-style="currency"
+                      currency-code="BRL"
+                      >
+                    </lightning-formatted-number>
+                    </p>
+                  </template>
+                  <template if:true={ehShiftmed}>
+                    <p class="slds-p-horizontal_small">
+                      Valor : 
+                      <lightning-formatted-number
+                      value={selectedEvent.valorPlantao}
+                      format-style="currency"
+                      currency-code="BRL"
+                      >
+                    </lightning-formatted-number>
+                    </p>
+                    <p class="slds-p-horizontal_small">
+                      Valor ShiftMed: 
+                      <lightning-formatted-number
+                      value={selectedEvent.valorShiftMed}
+                      format-style="currency"
+                      currency-code="BRL"
+                      >
+                    </lightning-formatted-number>
+                    </p>
+                  </template>
+                    
+                    
+                </lightning-card>
+                
+              </div>
+              <footer class="slds-modal__footer">
+                <template if:true={selectedEvent.plantaoLivre}>
+                  <button class="slds-button slds-button_brand" onclick={updateItemStatus}>Assumir Plantão</button>
+              </template>
+                <button class="slds-button slds-button_brand" onclick={closeModal}>Fechar</button>
+              </footer>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+      </template>
+  
+      <!-- Display the Created Record Details -->
+      <template if:true={createRecord}>
+        <div class="custom-modal">
+          <section role="dialog" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                <span class="slds-modal__close">
+                </span>
+                <h2 class="slds-text-heading_medium slds-hyphenate">Criar Evento</h2>
+              </header>
+              <div class="slds-modal__content slds-p-around_medium">
+                Evento daqui
+              </div>
+              <footer class="slds-modal__footer">
+                <lightning-button label="Cancelar" title="Cancel" onclick={createCancel} class="slds-m-right_small"></lightning-button>
+                <lightning-button variant="brand" label="Salvar" title="Save"></lightning-button>
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+      </template>
+    </lightning-card>
+  </template>

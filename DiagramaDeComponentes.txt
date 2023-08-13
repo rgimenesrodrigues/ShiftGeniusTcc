@@ -1,0 +1,64 @@
+@startuml
+
+!define CONTAINER_COLOR_LIGHT #F0F0F0
+!define CONTAINER_COLOR_DARK #DDDDDD
+
+!define COMPONENT_COLOR_LIGHT #FFFFFF
+!define COMPONENT_COLOR_DARK #BBBBBB
+
+!define FONT_COLOR_DARK #333333
+
+!define CONTAINER_STROKE_COLOR_DARK #555555
+
+!define ARROW_COLOR_DARK #777777
+!define ARROW_STROKE_COLOR_DARK #555555
+!define ARROW_FONT_COLOR_DARK #555555
+
+!skinparam component {
+    BackgroundColor COMPONENT_COLOR_DARK
+    BorderColor CONTAINER_STROKE_COLOR_DARK
+    FontColor FONT_COLOR_DARK
+    Shadowing false
+}
+
+!skinparam container {
+    BackgroundColor CONTAINER_COLOR_LIGHT
+    BorderColor CONTAINER_STROKE_COLOR_DARK
+    FontColor FONT_COLOR_DARK
+    Shadowing false
+}
+
+!define SalesforceContainer(containername) container "Salesforce Platform" as containername <<Salesforce Platform>> #FFFFFF
+!define ShiftGeniusContainer(containername) container "ShiftGenius" as containername <<Application>> #FFFFFF
+!define ShiftMedWebsiteContainer(containername) container "ShiftMed Website" as containername <<Website>> #FFFFFF
+!define BankingSystemContainer(containername) container "Banking System" as containername <<External System>> #FFFFFF
+
+!define LWCComponent(componentname) component "LWC" as componentname <<Salesforce Component>> #FFFFFF
+!define AuraComponent(componentname) component "Aura" as componentname <<Salesforce Component>> #FFFFFF
+!define VisualforceComponent(componentname) component "Visualforce" as componentname <<Salesforce Component>> #FFFFFF
+!define Salesforce1Component(componentname) component "Salesforce1" as componentname <<Salesforce Component>> #FFFFFF
+!define NotificationsComponent(componentname) component "Notifications" as componentname <<Salesforce Component>> #FFFFFF
+!define SOAPAPIComponent(componentname) component "SOAP API" as componentname <<Integration Technology>> #FFFFFF
+
+SalesforceContainer(salesforce)
+ShiftGeniusContainer(shiftgenius)
+ShiftMedWebsiteContainer(shiftmed)
+BankingSystemContainer(bank)
+
+LWCComponent(lwc)
+AuraComponent(aura)
+VisualforceComponent(visualforce)
+Salesforce1Component(salesforce1)
+NotificationsComponent(notifications)
+SOAPAPIComponent(soapapi)
+
+salesforce -- lwc
+salesforce -- aura
+salesforce -- visualforce
+salesforce -- salesforce1
+salesforce1 -- notifications
+salesforce -- soapapi
+shiftgenius -- salesforce
+shiftmed -- salesforce
+
+@enduml

@@ -1,0 +1,26 @@
+<apex:page StandardController="Contact" lightningStylesheets="true" extensions="CadastroMedicoServices">
+  <!-- Page Header -->
+  <apex:sectionHeader title="Cadastro de Médico" subtitle="{!subtitulo}" />
+
+  
+  <apex:form >
+    <apex:pageBlock mode="detail" > 
+
+      <apex:pageBlockSection columns="2" showHeader="true" title="Informações pessoais" collapsible="true"> 
+        <apex:inputField id="firstName" value="{!medico.Firstname}" required="true" />
+        <apex:inputField id="lastName" value="{!medico.LastName}"  required="true" /> 
+        <apex:inputField id="email" value="{!medico.Email}" required="true" />
+        <apex:inputField id="phone" value="{!medico.phone}"  required="true" />
+            
+      </apex:pageBlockSection>
+      <apex:pageBlockSection columns="2" showHeader="true" title="Informações profissionais" collapsible="true"> 
+        <apex:inputField id="crm" value="{!medico.CRM__c}" required="true" />
+        <apex:inputField id="especialidade" value="{!medico.Especialidades__c}"  required="true" />     
+      </apex:pageBlockSection>
+      <apex:pageBlockButtons location="bottom">
+        <apex:commandButton value="Salvar" action="{!save}"/>
+            <apex:commandButton value="Fechar" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+  </apex:pageBlock>
+  </apex:form>
+</apex:page>
